@@ -32,8 +32,14 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8660_SURF
 TARGET_OTA_ASSERT_DEVICE := SHV-E160L,quincylgt
 
 # Kernel
-TARGET_KERNEL_SOURCE        := kernel/samsung/msm8660-common
-TARGET_KERNEL_CONFIG        := cyanogenmod_quincylgt_defconfig
+#TARGET_KERNEL_SOURCE        := kernel/samsung/msm8660-common
+#TARGET_KERNEL_CONFIG        := cyanogenmod_quincylgt_defconfig
+
+TARGET_PREBUILT_KERNEL		:= device/samsung/quincylgt/kernel/zImage
+
+KERNEL_EXTERNAL_MODULES:
+		$(TARGET_OBJCOPY) device/samsung/quincylgt/kernel/modules/*.ko $(KERNEL_MODULES_OUT)/
+TARGET_KERNEL_MODULES		:= KERNEL_EXTERNAL_MODULES
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00A00000
